@@ -4,24 +4,27 @@ import main.com.adventure.world.objects.keys.Key;
 
 public class Hole {
 
+    private boolean isCovered = true;
+    private Key content;
+
     /**
      * Creates a hole with the given content.
      * @param content - the item that is covered by the hole.
      */
     public Hole(Key content) {
-
+        this.content = content;
+        this.isCovered = true;
     }
 
     public boolean isCovered() {
-        //TODO This value should come from HoleContent
-        return false;
+        return this.isCovered;
     }
 
     /**
      * Uncovers the hole. If applicable, the contents are now revealed.
      */
     public void dig() {
-        //TODO this function should update HoleContent's isCovered property.
+        this.isCovered = false;
     }
 
     /**
@@ -29,7 +32,9 @@ public class Hole {
      * @return the key if the hold is uncovered.
      */
     private Key getKeyIfPossible() {
-        //TODO Get the HoleContent's content only if the hole is uncovered.
+        if (!isCovered) {
+            return content;
+        }
         return null;
     }
 

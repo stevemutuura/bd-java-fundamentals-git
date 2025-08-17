@@ -122,19 +122,19 @@ public class GameController {
     }
 
     private void applyCommand(Command command) {
-        if (command.getVerb().equalsIgnoreCase(CommandConstants.LOOK)) {
+        if (command.getVerbString().equalsIgnoreCase(CommandConstants.LOOK)) {
             describeCurrentScene();
-        } else if (command.getVerb().equalsIgnoreCase(CommandConstants.MOVE)) {
+        } else if (command.getVerbString().equalsIgnoreCase(CommandConstants.MOVE)) {
             move(command.getObjectName());
-        } else if (command.getVerb().equalsIgnoreCase(CommandConstants.HELP)) {
+        } else if (command.getVerbString().equalsIgnoreCase(CommandConstants.HELP)) {
             printHelp();
-        } else if (command.getVerb().equalsIgnoreCase(CommandConstants.USE)) {
+        } else if (command.getVerbString().equalsIgnoreCase(CommandConstants.USE)) {
             use(command.getObjectName());
-        } else if (command.getVerb().equalsIgnoreCase(CommandConstants.DIG)) {
+        } else if (command.getVerbString().equalsIgnoreCase(CommandConstants.DIG)) {
             dig();
-        } else if (command.getVerb().equalsIgnoreCase(CommandConstants.EXAMINE)) {
+        } else if (command.getVerbString().equalsIgnoreCase(CommandConstants.EXAMINE)) {
             examine(command.getObjectName());
-        } else if (command.getVerb().equalsIgnoreCase(CommandConstants.TAKE)) {
+        } else if (command.getVerbString().equalsIgnoreCase(CommandConstants.TAKE)) {
             take(command.getObjectName());
         } else {
             printInvalidCommand();

@@ -17,6 +17,7 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import main.com.adventure.settings.CommandVerb;
 
 public class MT3 {
 
@@ -60,7 +61,7 @@ public class MT3 {
         when(processor.getNextCommand()).thenCallRealMethod();
 
         Command command = processor.getNextCommand();
-        assertEquals(CommandConstants.MOVE, command.getVerb());
+        assertEquals(CommandVerb.MOVE, command.getVerb());
         assertTrue(command.getObjectName().equalsIgnoreCase("west"));
     }
 
@@ -77,7 +78,7 @@ public class MT3 {
         when(processor.getNextCommand()).thenCallRealMethod();
         Command command = processor.getNextCommand();
 
-        assertEquals(CommandConstants.MOVE, command.getVerb());
+        assertEquals(CommandVerb.MOVE, command.getVerb());
         assertTrue(command.getObjectName().equalsIgnoreCase("east"));
     }
 
@@ -93,7 +94,7 @@ public class MT3 {
         when(processor.getNextCommand()).thenCallRealMethod();
         Command command = processor.getNextCommand();
 
-        assertEquals(CommandConstants.MOVE, command.getVerb());
+        assertEquals(CommandVerb.MOVE, command.getVerb());
         assertEquals("", command.getObjectName().toLowerCase());
     }
 
@@ -112,7 +113,7 @@ public class MT3 {
 
         Command command = processor.getNextCommand();
 
-        assertEquals(verb, command.getVerb());
+        assertEquals(CommandVerb.USE, command.getVerb());
         assertEquals(object, command.getObjectName().toLowerCase());
     }
 
@@ -128,7 +129,7 @@ public class MT3 {
         when(processor.getNextCommand()).thenCallRealMethod();
         Command command = processor.getNextCommand();
 
-        assertEquals(CommandConstants.LOOK, command.getVerb());
+        assertEquals(CommandVerb.LOOK, command.getVerb());
         assertEquals("", command.getObjectName());
     }
 

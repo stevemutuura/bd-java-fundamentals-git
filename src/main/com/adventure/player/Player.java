@@ -15,6 +15,7 @@ public class Player {
     private int power = 1;
     private int health = 10;
     private String name;
+    private Backpack backpack = new Backpack();
 
     /**
      * Sprint 1 Module 3
@@ -70,7 +71,20 @@ public class Player {
      * @return true if the move is executed. Otherwise, false.
      */
     public boolean move(String direction, boolean isValidDirection) {
-        return true;
+        if (!isValidDirection) {
+            System.out.println(direction + " is not a valid direction");
+            return false;
+        }
+        
+        if (direction.equalsIgnoreCase("EAST")) {
+            currentLocationIndex++;
+            return true;
+        } else if (direction.equalsIgnoreCase("WEST")) {
+            currentLocationIndex--;
+            return true;
+        }
+        
+        return false;
     }
 
     /**
@@ -80,7 +94,7 @@ public class Player {
      * @param item - the weapon that will be used to adjust the player's power.
      */
     public void setWeapon(Weapon item) {
-        //TODO Complete this function in Sprint 3 Module 1
+        this.power = item.getPower();
     }
 
     /**
@@ -90,8 +104,7 @@ public class Player {
      * @return the item or null if the item does not exist
      */
     public Tangible getItem(String itemName) {
-        //TODO Complete this function in Sprint 3 Module 2
-        return null;
+        return backpack.getItem(itemName);
     }
 
     /**
@@ -101,7 +114,9 @@ public class Player {
      * @return the removed item
      */
     public Tangible removeItem(Tangible item) {
-        //TODO Complete this function in Sprint 3 Module 2
+        if (backpack.removeItem(item)) {
+            return item;
+        }
         return null;
     }
 
@@ -110,7 +125,7 @@ public class Player {
      * Prints the backpack's inventory.
      */
     public void printItems() {
-        //TODO Complete this function in Sprint 3 Module 2
+        backpack.printItems();
     }
 
     /**
@@ -119,7 +134,7 @@ public class Player {
      * @param item - item to add.
      */
     public void addItem(Tangible item) {
-        //TODO Complete this function
+        backpack.addItem(item);
     }
 
     public void setKey(Key item) {

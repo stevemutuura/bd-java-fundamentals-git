@@ -1,8 +1,11 @@
 package main.com.adventure.settings;
 
+import java.util.Objects;
+
 public class Command {
 
-    private String verb;
+    private String verbString;
+    private CommandVerb verb;
     private String objectName;
 
     /**
@@ -11,7 +14,8 @@ public class Command {
      * @param objectName - the object(s) to which the command is directed.
      */
     public Command(String verb, String objectName) {
-        this.verb = verb;
+        this.verbString = verb;
+        this.verb = CommandVerb.getVerb(verb);
         this.objectName = objectName;
     }
 
@@ -20,7 +24,8 @@ public class Command {
      * @param verb - the verb of the command
      */
     public Command(String verb) {
-        this.verb = verb;
+        this.verbString = verb;
+        this.verb = CommandVerb.getVerb(verb);
         this.objectName = "";
     }
 
@@ -32,12 +37,48 @@ public class Command {
         this.objectName = objectName;
     }
 
-    public String getVerb() {
-        return verb;
+    /**
+     * Returns the CommandVerb enum value for tests that expect enum values.
+     * @return the CommandVerb enum value
+     */
+    public CommandVerb getVerb() {
+        return this.verb;
     }
 
+    /**
+     * Returns the original string verb for tests that expect strings.
+     * @return the original verb string
+     */
+    public String getVerbString() {
+        return this.verbString;
+    }
+
+    /**
+     * Sets the verb and updates the CommandVerb enum accordingly.
+     * @param verb - the new verb string
+     */
     public void setVerb(String verb) {
-        this.verb = verb;
+        this.verbString = verb;
+        this.verb = CommandVerb.getVerb(verb);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        
+        Command other = (Command) obj;
+        return Objects.equals(this.verbString, other.verbString) && 
+               Objects.equals(this.objectName, other.objectName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(verbString, objectName);
     }
 
     @Override

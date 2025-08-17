@@ -26,7 +26,44 @@ public enum CommandVerb {
      * @return - the CommandVerb associated with the given input.
      */
     public static CommandVerb getVerb(String verbString) {
-        return INVALID;
+        if (verbString == null) {
+            return INVALID;
+        }
+        
+        // Handle inventory command specially to match CommandVerb.INVENTORY
+        if (verbString.equalsIgnoreCase("inventory")) {
+            return INVENTORY;
+        }
+        
+        // For other commands, preserve the original case
+        CommandVerb result = INVALID;
+        switch (verbString.toLowerCase()) {
+            case "take":
+                result = TAKE;
+                break;
+            case "move":
+                result = MOVE;
+                break;
+            case "use":
+                result = USE;
+                break;
+            case "dig":
+                result = DIG;
+                break;
+            case "examine":
+                result = EXAMINE;
+                break;
+            case "look":
+                result = LOOK;
+                break;
+            case "help":
+                result = HELP;
+                break;
+            default:
+                result = INVALID;
+                break;
+        }
+        return result;
     }
 
 }
